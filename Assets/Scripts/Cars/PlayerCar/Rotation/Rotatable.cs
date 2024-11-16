@@ -7,7 +7,9 @@ public class Rotatable: MonoBehaviour, IState
     protected bool hasInput;
     protected Quaternion targetRotation;
     [SerializeField]protected float rotationSpeed;
+
     public bool IsGameOver { get; set; }
+    public bool IsGameStarted { get; set; }
 
     protected virtual void Start()
     {
@@ -16,12 +18,14 @@ public class Rotatable: MonoBehaviour, IState
 
     protected virtual void Update()
     {
+        if(!IsGameStarted) return;
         if(IsGameOver) return;
         Rotate();
     }
 
     protected virtual void SetRotationBasedOnDelta(Vector2 delta)
     {
+        if(!IsGameStarted) return;
         if(IsGameOver) return;
         if(!hasInput) hasInput = true;
     }
@@ -41,16 +45,18 @@ public class Rotatable: MonoBehaviour, IState
     {
         Managers.EventManager.Instance.OnSendCurrentDelta += SetRotationBasedOnDelta;
         Managers.EventManager.Instance.OnStopRotation += StopRotation;
-        Managers.EventManager.Instance.OnPlayerCrash += Crash;
+        Managers.EventManager.Instance.ONLevelStart += GameStart;
+        Managers.EventManager.Instance.ONLevelEnd += GameOver;
     }
 
-    public void GameOver(bool isSuccess)
+    public virtual void GameOver(bool isSuccess)
     {
         IsGameOver = true;
-    }   
-
-    protected virtual void Crash()
-    {
-        GameOver(false);
     }
+
+    public virtual void GameStart()
+    {
+        if(IsGameStarted) return;
+        IsGameStarted = true;
+    }   
 }

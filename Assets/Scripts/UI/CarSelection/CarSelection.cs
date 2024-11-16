@@ -15,6 +15,7 @@ public class CarSelection : MonoBehaviour
     private bool isUpdated;
     void Start()
     {
+        
         isUpdated = false;
         oldVelocity = Vector2.zero;
         scrollRect = GetComponent<ScrollRect>();
@@ -23,7 +24,8 @@ public class CarSelection : MonoBehaviour
         layoutGroup = selectionParent.GetComponent<VerticalLayoutGroup>();
         SetCarList();
         CreateMoreItems();
-        Debug.Log(carList.Length * (carList[0].rect.height + layoutGroup.spacing));
+        Managers.EventManager.Instance.OnEnableCarSelection += EnableSelection;
+        scrollRect.vertical = false;
     }
 
     private void Update() 
@@ -81,5 +83,10 @@ public class CarSelection : MonoBehaviour
         selectionParent.localPosition.x,
         (carList[0].rect.height + layoutGroup.spacing) * itemsToAdd,
         selectionParent.localPosition.z);
+    }
+
+    private void EnableSelection(bool isEnabled)
+    {
+        scrollRect.vertical = isEnabled;
     }
 }

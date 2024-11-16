@@ -35,10 +35,35 @@ namespace Managers
 #region UI
 
         public event System.Action<int,bool> OnSetCurrentCoin;
+        public event System.Action OnOpenCarSelection;
+        public event System.Action OnCloseCarSelection;
+        public event System.Action<bool> OnEnableCarSelection;
+
+        public event System.Action<bool> OnBlockInput;
 
         public void ONOnSetCurrentCoin(int amount,bool isIncrement)
         {
             OnSetCurrentCoin?.Invoke(amount,isIncrement);
+        }
+
+        public void ONOnOpenCarSelection()
+        {
+            OnOpenCarSelection?.Invoke();
+        }
+
+        public void ONOnCloseCarSelection()
+        {
+            OnCloseCarSelection?.Invoke();
+        }
+
+        public void ONOnEnableCarSelection(bool b)
+        {
+            OnEnableCarSelection?.Invoke(b);
+        }
+
+        public void ONOnBlockInput(bool b)
+        {
+            OnBlockInput?.Invoke(b);
         }
 
 #endregion

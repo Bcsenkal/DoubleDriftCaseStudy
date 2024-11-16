@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using LitMotion;
+using LitMotion.Adapters;
 public class InputHandler : MonoBehaviour
 {
     private Vector2 inputStart;
@@ -12,17 +13,24 @@ public class InputHandler : MonoBehaviour
     
 
     private bool isInputActive = false;
+    private bool isGameStarted = false;
 
+    private void Awake() 
+    {
+        MotionDispatcher.Clear();
+        MotionDispatcher.EnsureStorageCapacity<Vector3, NoOptions, Vector3MotionAdapter>(500);
+        MotionDispatcher.EnsureStorageCapacity<float, NoOptions, FloatMotionAdapter>(500);
+    }
 
     void Start()
     {
         screenWidth = Screen.width;
-        Cursor.lockState = CursorLockMode.Confined;
         Managers.EventManager.Instance.OnMouseDown += StartInputTracking;
         Managers.EventManager.Instance.OnMouseUp += StopInputTracking;
+
     }
 
-    private void Update() 
+    private void Update()
     {
         TrackInput();
     }
@@ -31,6 +39,11 @@ public class InputHandler : MonoBehaviour
     {
         inputStart = position;
         isInputActive = true;
+        if(!isGameStarted)
+        {
+            isGameStarted = true;
+            Managers.EventManager.Instance.OnONLevelStart();
+        }
     }
 
     void StopInputTracking(Vector2 position)

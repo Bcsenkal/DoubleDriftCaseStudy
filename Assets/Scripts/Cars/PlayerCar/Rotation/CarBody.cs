@@ -6,7 +6,7 @@ public class CarBody : Rotatable
 {
     protected override void Rotate()
     {
-        if(Quaternion.Angle(transform.rotation, targetRotation) > 0.1f)
+        if(Mathf.Abs(Quaternion.Angle(transform.rotation, targetRotation)) > 0.1f)
         {
             transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, Time.deltaTime * rotationSpeed);
         }

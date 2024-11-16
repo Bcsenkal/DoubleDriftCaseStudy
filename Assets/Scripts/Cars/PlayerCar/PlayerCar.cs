@@ -16,10 +16,10 @@ public class PlayerCar : Car
     [SerializeField]private float accelerationRate;
 
     private bool hasInput;
-    private bool isGameOver;
     
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         EventManager.Instance.OnSendCurrentDelta += SetHorizontalMovement;
         EventManager.Instance.OnStopRotation += StopRotation;
         EventManager.Instance.OnPlayerCrash += Crash;
@@ -29,7 +29,8 @@ public class PlayerCar : Car
     // Update is called once per frame
     private void Update()
     {
-        if(isGameOver) return;
+        if(!IsGameStarted) return;
+        if(IsGameOver) return;
         MoveForward();
         NormalizeHorizontalMovement();
         AdjustSpeed();
@@ -37,7 +38,7 @@ public class PlayerCar : Car
 
     private void LateUpdate() 
     {
-        if(isGameOver) return;
+        if(IsGameOver) return;
         var pos = transform.position;
         pos.x = Mathf.Clamp(pos.x, XLimits.x, XLimits.y);
         transform.position = pos;
@@ -81,6 +82,6 @@ public class PlayerCar : Car
 
     private void Crash()
     {
-        isGameOver = true;
+        Managers.EventManager.Instance.OnONLevelEnd(false);
     }
 }

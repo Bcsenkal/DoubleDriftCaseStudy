@@ -14,7 +14,10 @@ public class CarCreator : MonoBehaviour, IState
     private bool canSpawn;
     private int previousSpawnIndex;
     private Transform latestVehicle;
+
+
     public bool IsGameOver { get; set; }
+    public bool IsGameStarted { get; set; }
 
     void Start()
     {
@@ -23,6 +26,7 @@ public class CarCreator : MonoBehaviour, IState
 
     private void Update()
     {
+        if(!IsGameStarted) return;
         if(IsGameOver) return;
         if(!canSpawn) return;
         if(nextSpawn > Time.time) return;
@@ -52,7 +56,7 @@ public class CarCreator : MonoBehaviour, IState
             var spawnX = availableSpawnX[spawnXIndex];
             var spawnPositionZ = latestVehicle == null ? player.position.z + 65f : latestVehicle.position.z + 25f;
             var spawnPosition = new Vector3(spawnX, 0, spawnPositionZ);
-            car.Spawn(spawnPosition);
+            car.Spawn(spawnPosition, IsGameStarted);
             lastSpawn = car.transform;
             
             
@@ -85,19 +89,27 @@ public class CarCreator : MonoBehaviour, IState
     void SetPlayer(Transform playerTransform)
     {
         player = playerTransform;
-        canSpawn = true;
         SpawnInitialVehicles();
-        nextSpawn = Time.time + spawnFrequency;
+        
     }
 
     public void CacheEvents()
     {
         Managers.EventManager.Instance.OnSendPlayerData += SetPlayer;
         Managers.EventManager.Instance.ONLevelEnd += GameOver;
+        Managers.EventManager.Instance.ONLevelStart += GameStart;
     }
 
     public void GameOver(bool isSuccess)
     {
         IsGameOver = true;
+    }
+
+    public void GameStart()
+    {
+        if(IsGameStarted) return;
+        canSpawn = true;
+        nextSpawn = Time.time + spawnFrequency;
+        IsGameStarted = true;
     }
 }

@@ -7,9 +7,15 @@ public class AICar : Car, IPoolable
     private Renderer bodyRenderer;
     private bool isActive;
     private Transform player;
+
+    protected override void Start()
+    {
+        
+    }
     public void CacheComponents()
     {
         bodyRenderer = transform.GetChild(0).GetComponent<Renderer>();
+        CacheEvents();
     }
 
     public void SetTexture(Texture2D texture)
@@ -24,21 +30,21 @@ public class AICar : Car, IPoolable
 
     private void Update() 
     {
-        if(isActive)
-        {
-            MoveForward();
-            CheckDeSpawn();
-        }
+        if(!isActive) return;
+        if(!IsGameStarted) return;
+        MoveForward();
+        CheckDespawn();
     }
 
-    public void Spawn(Vector3 position)
+    public void Spawn(Vector3 position, bool gameStarted)
     {
         gameObject.SetActive(true);
         transform.position = position;
         isActive = true;
+        IsGameStarted = gameStarted;
     }
 
-    public void CheckDeSpawn()
+    public void CheckDespawn()
     {
         if(transform.position.z > player.position.z) return;
         if(Mathf.Abs(player.position.z - transform.position.z) > 20f)

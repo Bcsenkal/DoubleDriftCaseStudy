@@ -1,18 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LitMotion;
+using LitMotion.Extensions;
 
-public class OpenCarSelection : MonoBehaviour
+public class OpenCarSelection : UIButton
 {
-    // Start is called before the first frame update
-    void Start()
+    
+    protected override void Start() 
     {
-        
+        base.Start();
+        Managers.EventManager.Instance.OnCloseCarSelection += Enable;
+        Managers.EventManager.Instance.ONLevelStart += LevelStart;
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void OnClick()
     {
-        
+        button.interactable = false;
+        Managers.EventManager.Instance.ONOnOpenCarSelection();
+        Managers.EventManager.Instance.ONOnBlockInput(true);
+    }
+
+    private void Enable()
+    {
+        button.interactable = true;
+        Managers.EventManager.Instance.ONOnBlockInput(false);
+    }
+
+    private void LevelStart()
+    {
+        button.interactable = false;
+        LMotion.Create(125f,-150f,0.3f).WithEase(Ease.InBack).BindToAnchoredPositionX(rect);
     }
 }

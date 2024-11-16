@@ -5,7 +5,16 @@ using UnityEngine;
 public interface IState
 {
     public bool IsGameOver { get; set; }
+    public bool IsGameStarted { get; set; }
     public void CacheEvents();
 
-    public void GameOver(bool isSuccess);
+    public virtual void GameOver(bool isSuccess)
+    {
+
+    }
+
+    public virtual void GameStart()
+    {
+        
+    }
 }

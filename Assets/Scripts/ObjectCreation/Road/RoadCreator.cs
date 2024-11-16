@@ -14,6 +14,7 @@ public class RoadCreator : MonoBehaviour,IState
     [SerializeField]private int initialRoadsToCreate;
 
     public bool IsGameOver{get; set;}
+    public bool IsGameStarted{get; set;}
 
 
     private void Awake()
@@ -23,15 +24,13 @@ public class RoadCreator : MonoBehaviour,IState
     }
     void Start()
     {
-        EventManager.Instance.OnCreateRoad += CreateRoad;
-        EventManager.Instance.OnSendPlayerData += SetPlayer;
-        
-        canCreateRoad = true;
+        CacheEvents();
         nextRoadCreation = roads[2].transform.position.z;
     }
 
     private void Update() 
     {
+        if(!IsGameStarted) return;
         if(IsGameOver) return;
         if(player == null) return;
         if(!canCreateRoad) return;
@@ -73,11 +72,21 @@ public class RoadCreator : MonoBehaviour,IState
     public void CacheEvents()
     {
         EventManager.Instance.ONLevelEnd += GameOver;
+        EventManager.Instance.ONLevelStart += GameStart;
+        EventManager.Instance.OnCreateRoad += CreateRoad;
+        EventManager.Instance.OnSendPlayerData += SetPlayer;
     }
     
     public void GameOver(bool isSuccess)
     {
         IsGameOver = true;
+    }
+
+    public void GameStart()
+    {
+        if(IsGameStarted) return;
+        IsGameStarted = true;
+        canCreateRoad = true;
     }
     
 }

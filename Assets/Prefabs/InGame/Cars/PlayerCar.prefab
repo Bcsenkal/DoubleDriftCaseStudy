@@ -128,10 +128,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c9b5448180db02438482bb549300e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 30
   horizontalSpeed: 18
   XLimits: {x: -3, y: 3}
-  speedLimits: {x: 0, y: 0}
+  speedLimits: {x: 30, y: 60}
   accelerationRate: 0.3
 --- !u!1 &336703478456646675
 GameObject:
