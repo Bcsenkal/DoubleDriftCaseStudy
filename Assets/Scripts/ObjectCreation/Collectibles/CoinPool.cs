@@ -11,14 +11,4 @@ public class CoinPool : ObjectPooler
         instance = this;
         base.Awake();
     }
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -32,6 +32,17 @@ namespace Managers
 
 #endregion
 
+#region UI
+
+        public event System.Action<int,bool> OnSetCurrentCoin;
+
+        public void ONOnSetCurrentCoin(int amount,bool isIncrement)
+        {
+            OnSetCurrentCoin?.Invoke(amount,isIncrement);
+        }
+
+#endregion
+
 #region Data Flow
 
         public event System.Action<Transform> OnSendPlayerData;

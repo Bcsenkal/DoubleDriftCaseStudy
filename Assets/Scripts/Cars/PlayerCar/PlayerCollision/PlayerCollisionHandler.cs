@@ -26,6 +26,11 @@ public class PlayerCollisionHandler : MonoBehaviour
                 Crash();
             }
         }
+
+        if(other.TryGetComponent(out Collectible collectible))
+        {
+            collectible.GetCollected();
+        }
     }
 
     private void CacheComponents()

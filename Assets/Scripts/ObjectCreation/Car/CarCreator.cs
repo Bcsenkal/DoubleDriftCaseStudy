@@ -14,7 +14,6 @@ public class CarCreator : MonoBehaviour, IState
     private bool canSpawn;
     private int previousSpawnIndex;
     private Transform latestVehicle;
-
     public bool IsGameOver { get; set; }
 
     void Start()
@@ -44,7 +43,6 @@ public class CarCreator : MonoBehaviour, IState
             car.SetPlayer(player);
             car.SetTexture(carTextures[Random.Range(0, carTextures.Length)]);
             car.SetSpeed(speed);
-            
             var spawnXIndex = Random.Range(0, availableSpawnX.Length);
             if(i > 0)
             {
@@ -52,13 +50,26 @@ public class CarCreator : MonoBehaviour, IState
             }
             previousSpawnIndex = spawnXIndex;
             var spawnX = availableSpawnX[spawnXIndex];
-            var spawnPositionZ = latestVehicle == null ? player.position.z + 50f : latestVehicle.position.z + 10f;
-            var spawnPosition = new Vector3(spawnX, 0, spawnPositionZ + 15f);
+            var spawnPositionZ = latestVehicle == null ? player.position.z + 65f : latestVehicle.position.z + 25f;
+            var spawnPosition = new Vector3(spawnX, 0, spawnPositionZ);
             car.Spawn(spawnPosition);
             lastSpawn = car.transform;
             
+            
         }
-        latestVehicle = lastSpawn;
+        var coinSpawnRoll = Random.Range(0,10);
+        if(coinSpawnRoll <7)
+        {
+            latestVehicle = lastSpawn;
+            return;
+        }
+
+        var coin = CoinPool.instance.GetPooledObject() as Collectible;
+        var coinSpawnX = availableSpawnX[Random.Range(0, availableSpawnX.Length)];
+        var coinSpawnZ = latestVehicle == null ? player.position.z + 65f : latestVehicle.position.z + 25f;
+        coin.transform.position = new Vector3(coinSpawnX, 0, coinSpawnZ);
+        coin.Spawn();
+
 
     }
 
