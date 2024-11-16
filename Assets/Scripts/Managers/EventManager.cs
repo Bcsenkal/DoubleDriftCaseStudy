@@ -43,13 +43,23 @@ namespace Managers
 #endregion
 
 #region Player Movement
-        public event System.Action<Quaternion> OnSetPlayerRotation;
+        public event System.Action OnPlayerCrash;
 
-        public void ONOnSetPlayerRotation(Quaternion rotation)
+        public void ONOnPlayerCrash()
         {
-            OnSetPlayerRotation?.Invoke(rotation);
+            OnPlayerCrash?.Invoke();
         }
 
+#endregion
+
+#region Customization
+
+        public event System.Action<ColorType> OnSetPlayerColor;
+
+        public void ONOnSetPlayerColor(ColorType colorType)
+        {
+            OnSetPlayerColor?.Invoke(colorType);
+        }
 #endregion
 
 #region Input

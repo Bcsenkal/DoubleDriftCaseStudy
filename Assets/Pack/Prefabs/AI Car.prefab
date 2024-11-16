@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5798667547559729765}
   - component: {fileID: 7725231623662223034}
   - component: {fileID: 5254029072444757456}
+  - component: {fileID: 2741783840126397376}
   m_Layer: 0
   m_Name: DodgeChallenger_merged.001 (1)
   m_TagString: Untagged
@@ -61,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4120531941994410047, guid: 84e9593a993df7048b1566881974604e, type: 3}
+  - {fileID: 2100000, guid: 1b5b4ecdfe099654a8a6164b604a4387, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,6 +84,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2741783840126397376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49746643295681731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2baa5432666346b3a4d29b6ebc5af1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 1440
+  rotationVector: {x: 1, y: 0, z: 0}
 --- !u!1 &536663649636550308
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +109,7 @@ GameObject:
   - component: {fileID: 899363747360358911}
   - component: {fileID: 8198340595826146162}
   - component: {fileID: 4879955477487631221}
+  - component: {fileID: 5363649900319406595}
   m_Layer: 0
   m_Name: DodgeChallenger_merged.001
   m_TagString: Untagged
@@ -144,7 +160,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4120531941994410047, guid: 84e9593a993df7048b1566881974604e, type: 3}
+  - {fileID: 2100000, guid: 1b5b4ecdfe099654a8a6164b604a4387, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -166,6 +182,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5363649900319406595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536663649636550308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2baa5432666346b3a4d29b6ebc5af1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 1440
+  rotationVector: {x: 1, y: 0, z: 0}
 --- !u!1 &694780876987002009
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,6 +207,7 @@ GameObject:
   - component: {fileID: 3747399436695651065}
   - component: {fileID: 8389444023538945875}
   - component: {fileID: 6472079898102290985}
+  - component: {fileID: 7251376316141560336}
   m_Layer: 0
   m_Name: DodgeChallenger_merged.001 (2)
   m_TagString: Untagged
@@ -227,7 +258,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4120531941994410047, guid: 84e9593a993df7048b1566881974604e, type: 3}
+  - {fileID: 2100000, guid: 1b5b4ecdfe099654a8a6164b604a4387, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -249,6 +280,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7251376316141560336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 694780876987002009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2baa5432666346b3a4d29b6ebc5af1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 1440
+  rotationVector: {x: 1, y: 0, z: 0}
 --- !u!1 &5796462046832887360
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,7 +303,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5605859413053892994}
-  m_Layer: 0
+  - component: {fileID: 412141864900844599}
+  - component: {fileID: 1706337233730164769}
+  m_Layer: 6
   m_Name: AI Car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,8 +322,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7101836447928829294}
   - {fileID: 899363747360358911}
@@ -285,6 +332,39 @@ Transform:
   - {fileID: 6840401606974337251}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &412141864900844599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5796462046832887360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87292380b958de544be339df31a1d8ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1706337233730164769
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5796462046832887360}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.52, y: 1, z: 4.52}
+  m_Center: {x: 0, y: 0.59, z: -0.15}
 --- !u!1 &6012286974951927678
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,7 +426,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4120531941994410047, guid: 84e9593a993df7048b1566881974604e, type: 3}
+  - {fileID: 2100000, guid: 1b5b4ecdfe099654a8a6164b604a4387, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -379,6 +459,7 @@ GameObject:
   - component: {fileID: 6840401606974337251}
   - component: {fileID: 7189237364705608871}
   - component: {fileID: 3497771132109576906}
+  - component: {fileID: 3888694499435139911}
   m_Layer: 0
   m_Name: DodgeChallenger_merged.001 (3)
   m_TagString: Untagged
@@ -429,7 +510,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4120531941994410047, guid: 84e9593a993df7048b1566881974604e, type: 3}
+  - {fileID: 2100000, guid: 1b5b4ecdfe099654a8a6164b604a4387, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -451,3 +532,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3888694499435139911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7669977688605314200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2baa5432666346b3a4d29b6ebc5af1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 1440
+  rotationVector: {x: 1, y: 0, z: 0}

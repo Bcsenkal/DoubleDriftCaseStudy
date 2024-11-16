@@ -36,6 +36,8 @@ public abstract class ObjectPooler : MonoBehaviour
                 break;
             }
         }
-        return obj ?? Instantiate(prefab, transform.position, Quaternion.identity,transform).GetComponent<IPoolable>();
+        obj ??= Instantiate(prefab, transform.position, Quaternion.identity,transform).GetComponent<IPoolable>();
+        obj.CacheComponents();
+        return obj;
     }
 }

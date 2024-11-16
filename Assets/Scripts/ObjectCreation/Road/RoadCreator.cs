@@ -5,7 +5,6 @@ using Managers;
 
 public class RoadCreator : MonoBehaviour
 {
-    private float roadLength;
     private float nextPlacementZ;
     private bool canCreateRoad;
     private float nextRoadCreation;
@@ -20,7 +19,7 @@ public class RoadCreator : MonoBehaviour
     void Start()
     {
         EventManager.Instance.OnCreateRoad += CreateRoad;
-        EventManager.Instance.OnSendPlayerData += OnSetPlayer;
+        EventManager.Instance.OnSendPlayerData += SetPlayer;
         canCreateRoad = true;
         nextRoadCreation = roads[2].transform.position.z;
     }
@@ -39,7 +38,7 @@ public class RoadCreator : MonoBehaviour
     {
         canCreateRoad = false;
         var oldestRoad = roads[0];
-        oldestRoad.Place(new Vector3(0, 0, nextPlacementZ));
+        oldestRoad.Place(new Vector3(-0.18f, 0, nextPlacementZ));
         nextPlacementZ += oldestRoad.Bounds.z;
         roads.RemoveAt(0);
         roads.Add(oldestRoad);
@@ -59,7 +58,7 @@ public class RoadCreator : MonoBehaviour
         }
     }
 
-    private void OnSetPlayer(Transform p)
+    private void SetPlayer(Transform p)
     {
         player = p;
     }

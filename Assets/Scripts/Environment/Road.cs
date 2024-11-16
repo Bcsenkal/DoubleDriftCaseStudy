@@ -6,12 +6,7 @@ public class Road : EnvironmentObject
 {
 
     [SerializeField]private Renderer roadRenderer;
-
-    public void OnSpawn()
-    {
-        throw new System.NotImplementedException();
-    }
-
+    
     public override void Place(Vector3 position)
     {
         transform.position = position;
