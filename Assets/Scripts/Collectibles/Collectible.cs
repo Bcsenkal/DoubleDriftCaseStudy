@@ -10,8 +10,8 @@ public class Collectible : MonoBehaviour, IPoolable
 {
     [SerializeField]protected CollectibleType collectibleType;
     protected Collider col;
-    [ShowIf("collectibleType", CollectibleType.coin)]
-    [SerializeField]protected int value;
+    
+    [SerializeField,ShowIf("collectibleType", CollectibleType.coin)]protected int value;
 
     public void CacheComponents()
     {

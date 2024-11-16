@@ -8,7 +8,10 @@ public enum ColorType
     green,
     blue,
     yellow,
-    orange
+    orange,
+    purple,
+    pink,
+    white
 }
 
 [CreateAssetMenu(fileName = "CarData", menuName = "Customization/Car Data")]
