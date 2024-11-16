@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
-public class CarCreator : MonoBehaviour
+public class CarCreator : MonoBehaviour, IState
 {
     [SerializeField]private Texture2D[] carTextures;
     [SerializeField]private float speed;
@@ -14,14 +14,17 @@ public class CarCreator : MonoBehaviour
     private bool canSpawn;
     private int previousSpawnIndex;
     private Transform latestVehicle;
+
+    public bool IsGameOver { get; set; }
+
     void Start()
     {
-        Managers.EventManager.Instance.OnSendPlayerData += SetPlayer;
-        Managers.EventManager.Instance.ONLevelEnd += LevelEnd;
+        CacheEvents();
     }
 
     private void Update()
     {
+        if(IsGameOver) return;
         if(!canSpawn) return;
         if(nextSpawn > Time.time) return;
 
@@ -49,7 +52,7 @@ public class CarCreator : MonoBehaviour
             }
             previousSpawnIndex = spawnXIndex;
             var spawnX = availableSpawnX[spawnXIndex];
-            var spawnPositionZ = latestVehicle == null ? player.position.z + 150f : latestVehicle.position.z + 10f;
+            var spawnPositionZ = latestVehicle == null ? player.position.z + 50f : latestVehicle.position.z + 10f;
             var spawnPosition = new Vector3(spawnX, 0, spawnPositionZ + 15f);
             car.Spawn(spawnPosition);
             lastSpawn = car.transform;
@@ -59,16 +62,30 @@ public class CarCreator : MonoBehaviour
 
     }
 
+    private void SpawnInitialVehicles()
+    {
+        for(int i = 0; i < 5; i++)
+        {
+            SpawnNextVehicleBatch();
+        }
+    }
+
     void SetPlayer(Transform playerTransform)
     {
         player = playerTransform;
         canSpawn = true;
-        SpawnNextVehicleBatch();
+        SpawnInitialVehicles();
         nextSpawn = Time.time + spawnFrequency;
     }
 
-    private void LevelEnd(bool isSuccess)
+    public void CacheEvents()
     {
-        canSpawn = false;
+        Managers.EventManager.Instance.OnSendPlayerData += SetPlayer;
+        Managers.EventManager.Instance.ONLevelEnd += GameOver;
+    }
+
+    public void GameOver(bool isSuccess)
+    {
+        IsGameOver = true;
     }
 }

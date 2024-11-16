@@ -21,6 +21,17 @@ namespace Managers
 
 #endregion
 
+#region Visuals Effects
+
+        public event System.Action<Vector3,ParticleType> OnPlayParticleHere;
+
+        public void ONOnPlayParticleHere(Vector3 position,ParticleType type)
+        {
+            OnPlayParticleHere?.Invoke(position,type);
+        }
+
+#endregion
+
 #region Data Flow
 
         public event System.Action<Transform> OnSendPlayerData;

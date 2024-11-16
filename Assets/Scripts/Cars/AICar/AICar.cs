@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AICar : MonoBehaviour, IPoolable
+public class AICar : Car, IPoolable
 {
     private Renderer bodyRenderer;
     private bool isActive;
-    private float carSpeed;
     private Transform player;
     public void CacheComponents()
     {
@@ -18,21 +17,17 @@ public class AICar : MonoBehaviour, IPoolable
         bodyRenderer.material.mainTexture = texture;
     }
 
-    public void SetSpeed(float speed)
+    public void SetSpeed(float s)
     {
-        carSpeed = speed;
+        speed = s;
     }
 
     private void Update() 
     {
         if(isActive)
         {
-            transform.Translate(Vector3.forward * carSpeed * Time.deltaTime,Space.World);
-            if(transform.position.z > player.position.z) return;
-            if(Mathf.Abs(player.position.z - transform.position.z) > 20f)
-            {
-                DeSpawn();
-            }
+            MoveForward();
+            CheckDeSpawn();
         }
     }
 
@@ -43,14 +38,26 @@ public class AICar : MonoBehaviour, IPoolable
         isActive = true;
     }
 
-    public void DeSpawn()
+    public void CheckDeSpawn()
     {
-        isActive = false;
-        gameObject.SetActive(false);
+        if(transform.position.z > player.position.z) return;
+        if(Mathf.Abs(player.position.z - transform.position.z) > 20f)
+        {
+            isActive = false;
+            gameObject.SetActive(false);
+        }
+        
     }
 
     public void SetPlayer(Transform t)
     {
         player = t;
+    }
+
+    public void Destroy()
+    {
+        isActive = false;
+        Managers.EventManager.Instance.ONOnPlayParticleHere(transform.position + Vector3.up * 0.4f, ParticleType.explosion);
+        gameObject.SetActive(false);
     }
 }
