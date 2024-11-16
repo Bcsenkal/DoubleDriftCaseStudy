@@ -11,8 +11,7 @@ public class PlayerColorChanger : MonoBehaviour
         CacheComponents();
         Managers.EventManager.Instance.OnSetPlayerColor += ChangeColor;
 
-        if(!PlayerPrefs.HasKey("PlayerColor")) return;
-        ChangeColor((ColorType)PlayerPrefs.GetInt("PlayerColor"));
+        ChangeColor((ColorType)PlayerPrefs.GetInt("PlayerColor", 0));
     }
 
     private void CacheComponents()

@@ -33,8 +33,7 @@ public class PoliceCar : MonoBehaviour,IState
         if(!isChasing) return;
         var targetPos = new Vector3(player.position.x, transform.position.y, player.position.z - 3f);
         transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocityRef, 0.1f);
-        var direction = player.position - transform.position;
-        direction.y = transform.position.y;
+        var direction = player.position - targetPos;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * 2f);
     }
 
