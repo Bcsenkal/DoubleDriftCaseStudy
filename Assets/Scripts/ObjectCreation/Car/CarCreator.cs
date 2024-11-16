@@ -69,6 +69,7 @@ public class CarCreator : MonoBehaviour, IState
         var coinSpawnZ = latestVehicle == null ? player.position.z + 65f : latestVehicle.position.z + 25f;
         coin.transform.position = new Vector3(coinSpawnX, 0, coinSpawnZ);
         coin.Spawn();
+        latestVehicle = lastSpawn;
 
 
     }

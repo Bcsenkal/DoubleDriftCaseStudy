@@ -8,5 +8,6 @@ public class Coin : Collectible
     {
         base.GetCollected();
         ResourceManager.Instance.AddCoin(value);
+        Disable();
     }
 }

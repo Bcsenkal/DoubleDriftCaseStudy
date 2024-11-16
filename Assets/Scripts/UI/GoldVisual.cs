@@ -9,7 +9,6 @@ namespace UI
 {
     public class GoldVisual : MonoBehaviour
     {
-        [SerializeField] private bool isOnEndScreen;
         private TextMeshProUGUI coinText;
         private int currentCoin;
         private int targetCoin;

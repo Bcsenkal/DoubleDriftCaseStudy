@@ -26,14 +26,14 @@ public class ResourceManager : Singleton<ResourceManager>
             currentCoin = 0;
         }
         PlayerPrefs.SetInt("TotalCoin",currentCoin);
-        EventManager.Instance.ONOnSetCurrentCoin(currentCoin,false);
+        EventManager.Instance.ONOnSetCurrentCoin(amount,false);
     }
 
     public void AddCoin(int amount)
     {
         currentCoin += amount;
         PlayerPrefs.SetInt("TotalCoin",currentCoin);
-        EventManager.Instance.ONOnSetCurrentCoin(currentCoin,true);
+        EventManager.Instance.ONOnSetCurrentCoin(amount,true);
     }
 
     public int GetCurrentCoin()
