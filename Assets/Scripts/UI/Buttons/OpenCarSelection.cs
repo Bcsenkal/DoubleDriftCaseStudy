@@ -16,6 +16,7 @@ public class OpenCarSelection : UIButton
 
     protected override void OnClick()
     {
+        base.OnClick();
         button.interactable = false;
         Managers.EventManager.Instance.ONOnOpenCarSelection();
         Managers.EventManager.Instance.ONOnBlockInput(true);

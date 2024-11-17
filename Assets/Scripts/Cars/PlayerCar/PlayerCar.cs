@@ -11,7 +11,6 @@ public class PlayerCar : Car
     [SerializeField]private float horizontalSpeed;
     [SerializeField]private Vector2 XLimits;
     private float horizontalRef = 0f;
-    private float speedRef = 0f;
     [SerializeField]private Vector2 speedLimits;
     [SerializeField]private float accelerationRate;
 
@@ -23,6 +22,7 @@ public class PlayerCar : Car
         EventManager.Instance.OnSendCurrentDelta += SetHorizontalMovement;
         EventManager.Instance.OnStopRotation += StopRotation;
         EventManager.Instance.OnPlayerCrash += Crash;
+        Managers.AudioManager.Instance.PlayMusic(true);
         Invoke(nameof(SendPlayerData),0.1f);
     }
 
@@ -82,6 +82,7 @@ public class PlayerCar : Car
 
     private void Crash()
     {
+        AudioManager.Instance.PlayMusic(false);
         Managers.EventManager.Instance.OnONLevelEnd(false);
     }
 }

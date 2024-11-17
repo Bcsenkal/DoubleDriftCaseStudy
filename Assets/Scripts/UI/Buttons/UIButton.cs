@@ -17,7 +17,7 @@ public class UIButton : MonoBehaviour
 
     protected virtual void OnClick()
     {
-
+        Managers.AudioManager.Instance.PlayButtonClick();
     }
 
 }

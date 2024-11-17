@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Explosion : MonoBehaviour,IPoolable,IParticle
+public class LootParticle : MonoBehaviour,IPoolable,IParticle
 {
     private ParticleSystem particle;
     public void CacheComponents()

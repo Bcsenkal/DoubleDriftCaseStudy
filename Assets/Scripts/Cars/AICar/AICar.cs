@@ -44,7 +44,7 @@ public class AICar : Car, IPoolable
         IsGameStarted = gameStarted;
     }
 
-    public void CheckDespawn()
+    private void CheckDespawn()
     {
         if(transform.position.z > player.position.z) return;
         if(Mathf.Abs(player.position.z - transform.position.z) > 20f)
@@ -52,7 +52,6 @@ public class AICar : Car, IPoolable
             isActive = false;
             gameObject.SetActive(false);
         }
-        
     }
 
     public void SetPlayer(Transform t)

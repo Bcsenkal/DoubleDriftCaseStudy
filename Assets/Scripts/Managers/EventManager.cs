@@ -145,6 +145,26 @@ namespace Managers
         {
             ONLevelStart= null;
             ONLevelEnd = null;
+
+            OnPlayParticleHere = null;
+            OnSetCurrentCoin = null;
+            OnOpenCarSelection = null;
+            OnCloseCarSelection = null;
+            OnEnableCarSelection = null;
+            OnBlockInput = null;
+
+            OnSendPlayerData = null;
+
+            OnCreateRoad = null;
+
+            OnPlayerCrash = null;
+
+            OnSetPlayerColor = null;
+
+            OnMouseDown = null;
+            OnMouseUp = null;
+            OnSendCurrentDelta = null;
+            OnStopRotation = null;
         }
 
 

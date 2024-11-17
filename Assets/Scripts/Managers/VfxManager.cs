@@ -4,7 +4,8 @@ using UnityEngine;
 
 public enum ParticleType
 {
-    explosion
+    explosion,
+    loot
 }
 public class VfxManager : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class VfxManager : MonoBehaviour
         {
             case ParticleType.explosion:
                 PlayParticleOnPosition(ExplosionPool.instance.GetPooledObject(),position);
+                break;
+            case ParticleType.loot:
+                PlayParticleOnPosition(LootParticlePool.instance.GetPooledObject(),position);
                 break;
             default:
                 break;

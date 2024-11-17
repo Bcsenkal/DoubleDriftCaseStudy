@@ -10,6 +10,7 @@ public class Collectible : MonoBehaviour, IPoolable
 {
     [SerializeField]protected CollectibleType collectibleType;
     protected Collider col;
+    protected Transform player;
     
     [SerializeField,ShowIf("collectibleType", CollectibleType.coin)]protected int value;
 
@@ -18,9 +19,10 @@ public class Collectible : MonoBehaviour, IPoolable
         col = GetComponent<Collider>();
     }
 
-    public virtual void Spawn()
+    public virtual void Spawn(Transform p)
     {
         col.enabled = true;
+        player = p;
         gameObject.SetActive(true);
     }
 

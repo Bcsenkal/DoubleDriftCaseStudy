@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d073eed131f6d04c91b6477ffb59ef4, type: 3}
   m_Name: WhiteCar
   m_EditorClassIdentifier: 
-  colorType: 3
+  colorType: 7
   color: {r: 1, g: 1, b: 1, a: 1}
