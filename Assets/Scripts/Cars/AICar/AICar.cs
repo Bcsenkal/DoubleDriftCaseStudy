@@ -84,7 +84,7 @@ public class AICar : Car, IPoolable
         if(isDrivebyParticlePlayed) return;
         isDrivebyParticlePlayed = true;
         var particlePositionDirection = player.position.WithReplace(y : transform.position.y) - transform.position;
-        var particlePosition = transform.position + particlePositionDirection.normalized * 1.3f;
+        var particlePosition = transform.position + particlePositionDirection.normalized * 1.1f;
         Managers.EventManager.Instance.ONOnPlayParticleHere(particlePosition + Vector3.up * 0.5f, ParticleType.driveBy);
     }
 }

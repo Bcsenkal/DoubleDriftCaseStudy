@@ -114,7 +114,14 @@ public class PlayerCar : Car
     {
         AudioManager.Instance.PlayMusic(false);
         AudioManager.Instance.PlayCrashSFX();
+        AudioManager.Instance.PlayEngineSfx(false);
         Managers.EventManager.Instance.OnONLevelEnd(false);
+    }
+
+    public override void GameStart()
+    {
+        base.GameStart();
+        AudioManager.Instance.PlayEngineSfx(true);
     }
 
     public override void GameOver(bool isSuccess)
@@ -125,6 +132,7 @@ public class PlayerCar : Car
             return;
         }
         isSlowingDownOnEnd = true;
+        AudioManager.Instance.PlayEngineSfx(false);
 
     }
 }
