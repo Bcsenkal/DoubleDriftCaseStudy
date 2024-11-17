@@ -8,7 +8,7 @@ public class ResourceManager : Singleton<ResourceManager>
 
     //scalable resource manager
 
-    
+
     private int currentCoin;
     protected override void Awake() 
     {

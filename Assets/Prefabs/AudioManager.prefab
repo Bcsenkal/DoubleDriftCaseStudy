@@ -182,6 +182,8 @@ MonoBehaviour:
   collectSfx: {fileID: 8300000, guid: a4ae914abf2d843468adb7a93ccd9058, type: 3}
   crashSfx: {fileID: 8300000, guid: a738d878e6ab852489cbb09b4e2ef1d3, type: 3}
   buttonClickSfx: {fileID: 8300000, guid: 65d107416992e8949bda5d1d1e24cbf1, type: 3}
+  purchaseSuccessSfx: {fileID: 8300000, guid: 708e3772e37f86d4a9bce929dd6af0c6, type: 3}
+  purchaseFailSfx: {fileID: 8300000, guid: d50fec821bd16784fb9c84bdcbc907f5, type: 3}
 --- !u!1 &7290227376890466420
 GameObject:
   m_ObjectHideFlags: 0

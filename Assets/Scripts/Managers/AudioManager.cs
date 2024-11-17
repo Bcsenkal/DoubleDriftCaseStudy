@@ -15,6 +15,8 @@ namespace Managers
         [SerializeField] private AudioClip collectSfx;
         [SerializeField] private AudioClip crashSfx;
         [SerializeField] private AudioClip buttonClickSfx;
+        [SerializeField] private AudioClip purchaseSuccessSfx;
+        [SerializeField] private AudioClip purchaseFailSfx;
 
 
 #region Music
@@ -50,6 +52,18 @@ namespace Managers
         public void PlayCrashSFX()
         {
             extraSfxSource.PlayOneShot(crashSfx);
+        }
+
+        public void PlayUnlockSfx(bool canUnlock)
+        {
+            if (canUnlock)
+            {
+                sfxSource.PlayOneShot(purchaseSuccessSfx);
+            }
+            else
+            {
+                sfxSource.PlayOneShot(purchaseFailSfx);
+            }
         }
 
 #endregion

@@ -7,7 +7,7 @@ namespace Managers
     //This is an event manager my current lead taught me the moment I started working with him.
     //I've been using this type of observation since then.
 
-    
+
     public sealed class EventManager : Singleton<EventManager>
     {
         
@@ -119,10 +119,16 @@ namespace Managers
 #region Customization
 
         public event System.Action<ColorType> OnSetPlayerColor;
+        public event System.Action<ColorType> OnColorUnlock;
 
         public void ONOnSetPlayerColor(ColorType colorType)
         {
             OnSetPlayerColor?.Invoke(colorType);
+        }
+
+        public void ONOnColorUnlock(ColorType colorType)
+        {
+            OnColorUnlock?.Invoke(colorType);
         }
 #endregion
 
@@ -177,6 +183,7 @@ namespace Managers
             OnPlayerCrash = null;
 
             OnSetPlayerColor = null;
+            OnColorUnlock = null;
 
             OnMouseDown = null;
             OnMouseUp = null;

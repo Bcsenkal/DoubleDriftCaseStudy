@@ -18,8 +18,8 @@ public class CarSelection : MonoBehaviour
 
     //Tutorial link: https://www.youtube.com/watch?v=DCndoQFN344
 
-    
-    void Start()
+
+    void Awake()
     {
         
         isUpdated = false;

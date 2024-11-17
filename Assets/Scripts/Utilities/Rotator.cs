@@ -27,7 +27,7 @@ namespace Utilities
 
         void Update()
         {
-            _canRotate = Mathf.Abs(cam.position.z - transform.position.z) < 100f;
+            _canRotate = Mathf.Abs(cam.position.z - transform.position.z) < 200f;
             if (!_canRotate) return;
             transform.Rotate(rotationVector*(rotationSpeed*Time.deltaTime),Space.Self);
         }
