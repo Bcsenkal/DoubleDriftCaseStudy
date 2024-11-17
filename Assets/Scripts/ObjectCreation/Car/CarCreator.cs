@@ -36,6 +36,7 @@ public class CarCreator : MonoBehaviour, IState
         nextSpawn = Time.time + spawnFrequency;
     }
 
+    //spawns the next vehicle with getting offset from latest spawn. Also creates coin with some probability
     private void SpawnNextVehicleBatch()
     {
         previousSpawnIndex = 0;
@@ -77,7 +78,7 @@ public class CarCreator : MonoBehaviour, IState
 
 
     }
-
+    //spawn initial vehicles for the start of the game
     private void SpawnInitialVehicles()
     {
         for(int i = 0; i < 5; i++)

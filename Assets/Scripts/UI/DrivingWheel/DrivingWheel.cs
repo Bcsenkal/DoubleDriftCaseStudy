@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wheel : Rotatable
+public class DrivingWheel : Rotatable
 {
-
+    //Driving wheel visual for UI
+    
     protected override void SetRotationBasedOnDelta(Vector2 delta)
     {
         base.SetRotationBasedOnDelta(delta);

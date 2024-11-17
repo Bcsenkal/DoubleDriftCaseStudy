@@ -7,6 +7,9 @@ using LitMotion.Extensions;
 using LitMotion.Collections;
 public class SlideToDrift : MonoBehaviour
 {
+
+    //Simple tutorial for newcomers
+
     private Transform hand;
     private Transform carAnchor;
     private CompositeMotionHandle compositeHandler;

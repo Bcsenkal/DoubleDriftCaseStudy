@@ -39,6 +39,7 @@ public class RoadCreator : MonoBehaviour,IState
             CreateRoad();
         }
     }
+
     // Place oldest road at the end for endless road
     private void CreateRoad()
     {
@@ -51,7 +52,7 @@ public class RoadCreator : MonoBehaviour,IState
         nextRoadCreation = roads[2].transform.position.z;
         canCreateRoad = true;
     }
-
+    //Create initial roads for the start of the game
     private void CreateInitialRoads()
     {
         roads = new List<Road>();

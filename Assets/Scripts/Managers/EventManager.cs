@@ -3,6 +3,11 @@ using UnityEngine;
 
 namespace Managers
 {
+
+    //This is an event manager my current lead taught me the moment I started working with him.
+    //I've been using this type of observation since then.
+
+    
     public sealed class EventManager : Singleton<EventManager>
     {
         
@@ -71,9 +76,21 @@ namespace Managers
 #region Data Flow
 
         public event System.Action<Transform> OnSendPlayerData;
+        public event System.Action<float> OnSetRoadProgress;
+        public event System.Action<float> OnSetSpeedMeter;
         public void ONOnSendPlayerData(Transform player)
         {
             OnSendPlayerData?.Invoke(player);
+        }
+
+        public void ONOnSetRoadProgress(float progress)
+        {
+            OnSetRoadProgress?.Invoke(progress);
+        }
+
+        public void ONOnSetSpeedMeter(float speed)
+        {
+            OnSetSpeedMeter?.Invoke(speed);
         }
 
 #endregion
@@ -165,6 +182,9 @@ namespace Managers
             OnMouseUp = null;
             OnSendCurrentDelta = null;
             OnStopRotation = null;
+
+            OnSetRoadProgress = null;
+            OnSetSpeedMeter = null;
         }
 
 

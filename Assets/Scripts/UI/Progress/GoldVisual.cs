@@ -21,8 +21,7 @@ namespace UI
             EventManager.Instance.OnSetCurrentCoin += OnSetCurrentCoin;
         }
 
-    
-
+        
         private void OnSetCurrentCoin(int amount,bool isIncrement)
         {
             if (isIncrement)
@@ -38,6 +37,8 @@ namespace UI
             StartCoroutine(SetGoldText());
         }
 
+        //Smoothly changes the gold text
+        
         IEnumerator SetGoldText()
         {
             var timer = 0f;

@@ -7,8 +7,13 @@ public class UIButton : MonoBehaviour
 {
     protected Button button;
     protected RectTransform rect;
-    // Start is called before the first frame update
+    
     protected virtual void Start()
+    {
+        CacheComponents();
+    }
+
+    protected void CacheComponents()
     {
         rect = GetComponent<RectTransform>();
         button = GetComponent<Button>();
@@ -19,5 +24,4 @@ public class UIButton : MonoBehaviour
     {
         Managers.AudioManager.Instance.PlayButtonClick();
     }
-
 }

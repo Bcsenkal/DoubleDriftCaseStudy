@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 namespace Managers
 {
+    //I did not use it but it's one of the core features I use. It loads the last saved scene.
     public class LoadingManager : MonoBehaviour
     {
         

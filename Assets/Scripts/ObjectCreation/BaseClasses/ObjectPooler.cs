@@ -4,6 +4,11 @@ using UnityEngine;
 
 public abstract class ObjectPooler : MonoBehaviour
 {
+    //Base class for pooling system. Creates pool, gets pooled object if available, if not creates new
+
+    //But most of the time we have to make sure we created enough objects and deactive them after use so we can reuse them
+
+    
     [SerializeField]protected GameObject prefab;
     [SerializeField]protected int poolsize;
     protected List<IPoolable> pool; 
@@ -36,8 +41,12 @@ public abstract class ObjectPooler : MonoBehaviour
                 break;
             }
         }
-        obj ??= Instantiate(prefab, transform.position, Quaternion.identity,transform).GetComponent<IPoolable>();
-        obj.CacheComponents();
+        if(obj == null)
+        {
+            obj = Instantiate(prefab, transform.position, Quaternion.identity,transform).GetComponent<IPoolable>();
+            obj.CacheComponents();
+            pool.Add(obj);   
+        }
         return obj;
     }
 }

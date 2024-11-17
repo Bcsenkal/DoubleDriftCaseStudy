@@ -49,7 +49,7 @@ namespace Managers
 
         public void PlayCrashSFX()
         {
-            sfxSource.PlayOneShot(crashSfx);
+            extraSfxSource.PlayOneShot(crashSfx);
         }
 
 #endregion

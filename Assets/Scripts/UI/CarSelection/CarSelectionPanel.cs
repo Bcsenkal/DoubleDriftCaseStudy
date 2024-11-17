@@ -7,6 +7,8 @@ using LitMotion.Extensions;
 
 public class CarSelectionPanel : MonoBehaviour
 {
+
+    //Controls the motion of the car selection panel
     private CanvasGroup canvasGroup;
     private RectTransform rect;
     private Button closeButton;

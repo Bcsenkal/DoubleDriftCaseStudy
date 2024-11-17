@@ -13,6 +13,7 @@ public class Road : EnvironmentObject
         gameObject.SetActive(true);
     }
 
+    //Gets the bounds of the road so when we create new roads we know where to place them
     public override void SetBounds()
     {
         Bounds = roadRenderer.bounds.size;

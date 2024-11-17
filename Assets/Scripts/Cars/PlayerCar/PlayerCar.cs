@@ -15,6 +15,8 @@ public class PlayerCar : Car
     [SerializeField]private float accelerationRate;
 
     private bool hasInput;
+    private bool isSlowingDownOnEnd;
+    private bool isSpeedingUp;
     
     protected override void Start()
     {
@@ -23,6 +25,7 @@ public class PlayerCar : Car
         EventManager.Instance.OnStopRotation += StopRotation;
         EventManager.Instance.OnPlayerCrash += Crash;
         Managers.AudioManager.Instance.PlayMusic(true);
+        isSpeedingUp = true;
         Invoke(nameof(SendPlayerData),0.1f);
     }
 
@@ -45,12 +48,13 @@ public class PlayerCar : Car
     }
 
     
-
+    //According to delta, set horizontal movement so we do not just rotate around our anchor, we also move slowly in that direction
     private void SetHorizontalMovement(Vector2 delta)
     {
         horizontalMovement = horizontalSpeed * delta.x;
     }
 
+    //If we have no input, horizontal movement should be stopped smoothly.
     private void NormalizeHorizontalMovement()
     {
         if(!hasInput)
@@ -69,20 +73,58 @@ public class PlayerCar : Car
         transform.Translate(new Vector3(horizontalMovement, 0, speed) * Time.deltaTime, Space.World);
     }
     
+    //Send player data to required components. I'm using this only for position check, I could also broadcast our position continuously on Update, both works.
     private void SendPlayerData()
     {
         EventManager.Instance.ONOnSendPlayerData(transform);
     }
 
+    //First we check if the game just started and we are speeding up. If we reach minimum speed limit, we stop making first check cuz our "minimum" speed on gameplay is "speedlimits.x"
+    //Then we check if we reached at the end, in that case we gonna slow down so target speed is 0 and acceleration (deceleration) should be faster to reach 0 quickly
+    //At the end, we check if we have move input, if not, we speed up slowly since we're not drifting and moving horizontally.
+
     private void AdjustSpeed()
     {
-        var target = Mathf.Abs(horizontalMovement) < 0.4f ? speedLimits.y : speedLimits.x;
+        if(isSpeedingUp)
+        {
+            if(speedLimits.x - speed < 0.5f)
+            {
+                speed = speedLimits.x + 1;
+                isSpeedingUp = false;
+            } 
+        }
+        
+        var target = speed < speedLimits.x ? speedLimits.x : Mathf.Abs(horizontalMovement) < 0.4f ? speedLimits.y : speedLimits.x;
+        if(isSlowingDownOnEnd)
+        {
+            target = 0;
+            accelerationRate = 2f;
+        }
+        else
+        {
+            accelerationRate = speed < speedLimits.x ? 1.5f : 0.3f;
+        }
+        
+        
         speed = Mathf.Lerp(speed,target,Time.deltaTime * accelerationRate);
+        Managers.EventManager.Instance.ONOnSetSpeedMeter(speed/speedLimits.y);
     }
 
     private void Crash()
     {
         AudioManager.Instance.PlayMusic(false);
+        AudioManager.Instance.PlayCrashSFX();
         Managers.EventManager.Instance.OnONLevelEnd(false);
+    }
+
+    public override void GameOver(bool isSuccess)
+    {
+        if(!isSuccess)
+        {
+            IsGameOver = true;
+            return;
+        }
+        isSlowingDownOnEnd = true;
+
     }
 }

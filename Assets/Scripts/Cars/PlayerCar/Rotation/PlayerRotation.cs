@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerRotation : Rotatable
 {
+    //Explanation is on inherited class
+
     protected override void Start()
     {
         base.Start();
@@ -14,6 +16,7 @@ public class PlayerRotation : Rotatable
         targetRotation = Quaternion.Euler(0, -delta.x * 70f, 0);
     }
 
+    
     protected override void Rotate()
     {
         if(Mathf.Abs(Quaternion.Angle(transform.rotation, targetRotation)) > 0.1f)

@@ -13,20 +13,14 @@ public class PlayerCollisionHandler : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other) 
     {
+        //Checks if collision is AICar
         if(other.TryGetComponent(out AICar aiCar))
         {
-            Debug.Log("Collision Detected");
-            if(Mathf.Abs(other.transform.position.x - transform.position.x) > 1.2f)
-            {
-                Debug.Log("Got no harm");
-            }
-            else
-            {
-                aiCar.Destroy();
-                Crash();
-            }
+            aiCar.Destroy();
+            Crash();
         }
 
+        //Checks if collision is Collectible
         if(other.TryGetComponent(out Collectible collectible))
         {
             collectible.GetCollected();
@@ -37,8 +31,10 @@ public class PlayerCollisionHandler : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
+        Managers.EventManager.Instance.ONLevelEnd += OnWinCondition;
     }
 
+    //On destructive collision with AICar, turns on physics of the car and adds crash force to it.
     private void Crash()
     {
         Managers.EventManager.Instance.ONOnPlayerCrash();
@@ -47,5 +43,13 @@ public class PlayerCollisionHandler : MonoBehaviour
         rb.AddForce(new Vector3(0,1.5f,3f)* 6f,ForceMode.Impulse);
         //rb.AddTorque(new Vector3(1,Random.Range(-0.3f,0.3f),Random.Range(-0.3f,0.3f)) * 30f,ForceMode.Impulse);
         rb.AddTorque(new Vector3(1,Random.Range(-0.5f,0.5f),Random.Range(-0.5f,0.5f)) * 150f,ForceMode.Acceleration);
+    }
+
+    //On win condition, disables player collision to prevent player from colliding with AICar
+    private void OnWinCondition(bool isSuccess)
+    {
+        if(!isSuccess) return;
+        col.enabled = false;
+
     }
 }

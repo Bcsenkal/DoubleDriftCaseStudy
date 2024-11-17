@@ -13,21 +13,33 @@ public class CarSelection : MonoBehaviour
     private RectTransform[] carList;
     private Vector2 oldVelocity;
     private bool isUpdated;
+
+    // I watched tutorial for this script and modified it to work with vertical layout. This was the most struggling implementation on this project.
+
+    //Tutorial link: https://www.youtube.com/watch?v=DCndoQFN344
+
+    
     void Start()
     {
         
         isUpdated = false;
         oldVelocity = Vector2.zero;
-        scrollRect = GetComponent<ScrollRect>();
-        viewPortTransform = scrollRect.viewport;
-        selectionParent = scrollRect.content;
-        layoutGroup = selectionParent.GetComponent<VerticalLayoutGroup>();
+        CacheComponents();
         SetCarList();
         CreateMoreItems();
         Managers.EventManager.Instance.OnEnableCarSelection += EnableSelection;
         scrollRect.vertical = false;
     }
 
+    private void CacheComponents()
+    {
+        scrollRect = GetComponent<ScrollRect>();
+        viewPortTransform = scrollRect.viewport;
+        selectionParent = scrollRect.content;
+        layoutGroup = selectionParent.GetComponent<VerticalLayoutGroup>();
+    }
+
+    //checks if we reached the end of the list and adjusts the scroll rect for infinite loop
     private void Update() 
     {
         if (isUpdated)
@@ -47,7 +59,7 @@ public class CarSelection : MonoBehaviour
             isUpdated = true;
         }
     }
-
+    
     private void SetCarList()
     {
         var carCount = selectionParent.childCount;
@@ -58,6 +70,7 @@ public class CarSelection : MonoBehaviour
         }
     }
 
+    //create more items in the list for infinite loop so we'll achieve seemless loops.
     private void CreateMoreItems()
     {
         

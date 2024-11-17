@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoadPool : ObjectPooler
 {
-    public static RoadPool instance;
+    public static RoadPool instance{get; private set;}
     // Start is called before the first frame update
     protected override void Awake()
     {

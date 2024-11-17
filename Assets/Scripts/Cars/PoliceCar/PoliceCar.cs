@@ -20,6 +20,7 @@ public class PoliceCar : MonoBehaviour,IState
     public void GameOver(bool isSuccess)
     {
         IsGameOver = true;
+        if(IsInvoking(nameof(StartChasing))) CancelInvoke(nameof(StartChasing));
     }
 
     void Start()
@@ -27,7 +28,7 @@ public class PoliceCar : MonoBehaviour,IState
         CacheEvents();
     }
 
-    // Update is called once per frame
+    // Smoothly adjusts position and rotation according to player position. It creates "try but never catch" style police chasing.
     void Update()
     {
         if(!IsGameStarted) return;
@@ -52,6 +53,11 @@ public class PoliceCar : MonoBehaviour,IState
     {
         if(IsGameStarted) return;
         IsGameStarted = true;
+        Invoke(nameof(StartChasing),2f);
+    }
+
+    private void StartChasing()
+    {
         isChasing = true;
     }
 }

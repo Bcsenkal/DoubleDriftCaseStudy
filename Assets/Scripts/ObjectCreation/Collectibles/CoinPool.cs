@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CoinPool : ObjectPooler
 {
-    public static CoinPool instance;
+    public static CoinPool instance{get; private set;}
 
     protected override void Awake()
     {

@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 namespace Managers
 {
+
+    //Game manager for scene transition
     public class GameManager : Singleton<GameManager>
     {
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CarPool : ObjectPooler
 {
-    public static CarPool instance;
+    public static CarPool instance{get; private set;}
     protected override void Awake() 
     {
         instance = this;

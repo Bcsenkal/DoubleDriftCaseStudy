@@ -6,6 +6,10 @@ using UnityEngine.EventSystems;
 
 public class CarOption : MonoBehaviour, IPointerClickHandler
 {
+
+    //Car option on car selection panel. It will change color of frame when player clicks on it and will send event to set player color
+
+
     [SerializeField] private ColorType carColor;
     private bool isSelected;
     private Image image;
@@ -13,6 +17,12 @@ public class CarOption : MonoBehaviour, IPointerClickHandler
     {
         image = GetComponent<Image>();
         Managers.EventManager.Instance.OnSetPlayerColor += OnSetPlayerColor;
+        SetSavedColor();
+    }
+
+    //Checks player prefs to see if this color was selected
+    private void SetSavedColor()
+    {
         if(PlayerPrefs.GetInt("PlayerColor",0) == (int)carColor)
         {
             isSelected = true;
@@ -20,6 +30,7 @@ public class CarOption : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    //According to player selection, change color of frame so player will know which car is selected
     private void OnSetPlayerColor(ColorType colorType)
     {
         if(carColor == colorType)

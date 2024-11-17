@@ -19,6 +19,7 @@ public class PlayerColorChanger : MonoBehaviour
         renderers = GetComponentsInChildren<Renderer>();
     }
 
+    //According to event, change the color of material of the car. We can also use textures but it needs refactoring.
     private void ChangeColor(ColorType colorType)
     {
         var targetColor = carDatas.Find(x => x.colorType == colorType).color;

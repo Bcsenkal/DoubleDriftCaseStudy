@@ -20,14 +20,19 @@ public class InputHandler : MonoBehaviour
         MotionDispatcher.Clear();
         MotionDispatcher.EnsureStorageCapacity<Vector3, NoOptions, Vector3MotionAdapter>(500);
         MotionDispatcher.EnsureStorageCapacity<float, NoOptions, FloatMotionAdapter>(500);
+        
     }
 
     void Start()
     {
         screenWidth = Screen.width;
+        CacheEvents();
+    }
+
+    private void CacheEvents()
+    {
         Managers.EventManager.Instance.OnMouseDown += StartInputTracking;
         Managers.EventManager.Instance.OnMouseUp += StopInputTracking;
-
     }
 
     private void Update()
@@ -35,6 +40,7 @@ public class InputHandler : MonoBehaviour
         TrackInput();
     }
 
+    
     void StartInputTracking(Vector2 position) 
     {
         inputStart = position;
@@ -53,6 +59,7 @@ public class InputHandler : MonoBehaviour
         Managers.EventManager.Instance.ONOnStopRotation();
     }
 
+    //Sends the delta of the input for rotations and movements
     private void TrackInput()
     {
         if(!isInputActive) return;

@@ -10,6 +10,11 @@ public class OpenCarSelection : UIButton
     protected override void Start() 
     {
         base.Start();
+        CacheEvents();
+        
+    }
+    private void CacheEvents()
+    {
         Managers.EventManager.Instance.OnCloseCarSelection += Enable;
         Managers.EventManager.Instance.ONLevelStart += LevelStart;
     }

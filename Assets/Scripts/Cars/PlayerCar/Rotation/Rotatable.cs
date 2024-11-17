@@ -22,7 +22,7 @@ public class Rotatable: MonoBehaviour, IState
         if(IsGameOver) return;
         Rotate();
     }
-
+    // Gets delta of the input and sets the rotation according to delta, it's virtual so inheritors can override.
     protected virtual void SetRotationBasedOnDelta(Vector2 delta)
     {
         if(!IsGameStarted) return;
@@ -30,6 +30,7 @@ public class Rotatable: MonoBehaviour, IState
         if(!hasInput) hasInput = true;
     }
 
+    //After we get target rotation from delta value earlier, we lerp to target rotation until we meet angle check
     protected virtual void Rotate()
     {
         if(IsGameOver) return;
